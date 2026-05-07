@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS partite (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_giocatore1 INT,
+  id_giocatore2 INT,
+  id_vincitore INT NULL,
+  data_ora DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (id_giocatore1) REFERENCES giocatori(id) ON DELETE CASCADE,
+  FOREIGN KEY (id_giocatore2) REFERENCES giocatori(id) ON DELETE CASCADE,
+  FOREIGN KEY (id_vincitore) REFERENCES giocatori(id) ON DELETE SET NULL)
+
+CREATE TABLE IF NOT EXISTS giocatori (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255) UNIQUE NOT NULL,
+  partite_giocate INT DEFAULT 0,
+  vittorie INT DEFAULT 0,
+  pareggi INT DEFAULT 0,
+  sconfitte INT DEFAULT 0)
